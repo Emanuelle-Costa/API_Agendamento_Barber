@@ -11,7 +11,7 @@ namespace BarberShop.Models
 
         public Cliente Servico { get; set; }
 
-        public int ProfissionalId { get; set; }
+        public Guid ProfissionalId { get; set; }
 
         public Profissional Profissional { get; set; }
     }
