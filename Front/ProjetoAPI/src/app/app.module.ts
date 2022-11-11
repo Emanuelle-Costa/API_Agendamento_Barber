@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { ProfissionaisComponent } from './profissionais/profissionais.component'
+import { ProfissionaisComponent } from './components/profissionais/profissionais.component'
 
 @NgModule({
   declarations: [
