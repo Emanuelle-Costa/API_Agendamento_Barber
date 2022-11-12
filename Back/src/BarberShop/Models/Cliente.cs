@@ -12,7 +12,7 @@ namespace BarberShop.Models
        
         public string Senha { get; set; }
 
-        public IEnumerable<Agenda> Agenda { get; set; }
+        public IEnumerable<Agenda> Agendas { get; set; }
 
         public IEnumerable<ClienteProfissional> ClientesProfissionais { get; set; }
     }
