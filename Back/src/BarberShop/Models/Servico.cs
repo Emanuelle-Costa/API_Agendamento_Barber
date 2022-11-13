@@ -18,10 +18,10 @@ namespace BarberShop.Models
 
         public DateTime? FimServiço { get; set; }
 
-        public int ProfissionalId { get; set; }
+        public Guid ProfissionalId { get; set; }
 
         public Profissional Profissional { get; set; }
 
-         public IEnumerable<ServicoProfissional> ServicosProfissionais { get; set; }
+        public IEnumerable<ServicoProfissional> ServicosProfissionais { get; set; }
     }
 }

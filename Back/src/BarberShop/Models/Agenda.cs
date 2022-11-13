@@ -14,11 +14,11 @@ namespace BarberShop.Models
         public int Id { get; set; }
         public DateTime Data { get; set; }
 
-        public int? ProfissionalId { get; set; }
+        public Guid? ProfissionalId { get; set; }
 
         public Profissional Profissional { get; set; }
 
-        public int? ClinteId { get; set; }
+        public Guid? ClinteId { get; set; }
 
         public Cliente Cliente { get; set; }
     }

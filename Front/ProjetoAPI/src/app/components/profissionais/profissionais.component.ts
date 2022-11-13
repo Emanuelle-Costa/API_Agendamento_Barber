@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ProfissionalService } from 'src/app/services/profissional.service';
 
 @Component({
   selector: 'app-profissionais',
@@ -32,7 +32,7 @@ export class ProfissionaisComponent implements OnInit {
     )
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private profissionalService: ProfissionalService) { }
 
   ngOnInit(): void {
     this.getProfissionais();
@@ -41,8 +41,10 @@ export class ProfissionaisComponent implements OnInit {
   alterarImg(){
     this.exibirImg = !this.exibirImg;
   }
+
+
   public getProfissionais(): void {
-    this.http.get('https://localhost:7101/api/Profissionais').subscribe(
+    this.profissionalService.pegarProfissionais().subscribe(
       response => {
         this.profissionais = response;
         this.profissionaisFiltrados = this.profissionais;
