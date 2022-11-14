@@ -10,7 +10,7 @@ import { ProfissionalService } from 'src/app/services/profissional.service';
   styleUrls: ['./profissionais.component.scss']
 })
 export class ProfissionaisComponent implements OnInit {
-  modalRef?: BsModalRef;
+  modalRef!: BsModalRef;
   public profissionais: Profissional[] = [];
   public profissionaisFiltrados: Profissional[] = [];
   public larguraImg: number = 80;

@@ -4,12 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import { ContatosComponent } from './components/contatos/contatos.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
+import { ServicosComponent } from './components/servicos/servicos.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
 import { ProfissionaisComponent } from './components/profissionais/profissionais.component'
-import { ClienteComponent } from './components/cliente/cliente.component';
-import { NavComponent } from './components/nav/nav.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { NavComponent } from './shared/nav/nav.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -18,20 +21,23 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { ToastrModule } from 'ngx-toastr';
 
-
 import { ProfissionalService } from './services/profissional.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    ClienteComponent,
+    ClientesComponent,
     NavComponent,
     ProfissionaisComponent,
     DateTimeFormatPipe,
-
+    ServicosComponent,
+    AgendaComponent,
+    TituloComponent,
+    ContatosComponent
   ],
   imports: [
     BrowserModule,
