@@ -13,4 +13,20 @@ export class ProfissionalService {
     return this.http.get<Profissional[]>(this.baseURL)
   }
 
+  public pegaProfissionalPeloId(id: string): Observable<Profissional>{
+    return this.http.get<Profissional>(`${this.baseURL}/${id}`);
+  }
+
+  public AdicionarProfissional(profissional: Profissional): Observable<Profissional>{
+    return this.http.post<Profissional>(this.baseURL, profissional);
+  }
+
+  public AtualizarProfissional(id: string, profissional: Profissional): Observable<Profissional>{
+    return this.http.put<Profissional>(`${this.baseURL}/${id}`, profissional);
+  }
+
+  public ExcluirProfissional(id: string){
+    return this.http.delete(`${this.baseURL}/${id}`);
+  }
+
 }

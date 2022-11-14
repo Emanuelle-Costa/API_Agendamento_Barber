@@ -1,108 +1,125 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BarberShop.Data;
 using BarberShop.Models;
+using BarberShop.Models.Contratos;
 
 namespace BarberShop.Controllers
 {
     [Route("api/[controller]")]
-    public class ProfissionaisController : Controller
+    [ApiController]
+    public class ProfissionaisController : ControllerBase
     {
-      private readonly ContextoBanco _context;
+        
+        private readonly IProfissionalModel _profissionalModel;
 
-        public ProfissionaisController(ContextoBanco context)
+        public ProfissionaisController(IProfissionalModel profissionalModel)
         {
-            _context = context;
+            _profissionalModel = profissionalModel;
+            
         }
 
-        // GET: api/profissional
+        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Profissional>>> GetProfissional()
+        public async Task<ActionResult> PegarTodosProfissionais()
         {
-            return await _context.Profissionais.ToListAsync();
-        }
-
-        // GET: api/Profissional/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Profissional>> GetProfissional(Guid id)
-        {
-            var profissional = await _context.Profissionais.FindAsync(id);
-
-            if (profissional == null)
-            {
-                return NotFound();
-            }
-
-            return profissional;
-        }
-
-        // PUT: api/Profissional/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProfissional(Guid id, Profissional profissional)
-        {
-            if (id != profissional.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(profissional).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProfissionalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                var profissionais = await _profissionalModel.PegarTodosProfissionais(true);
+                if(profissionais == null) return NotFound("Nenhum evento encontrado!");
 
-            return NoContent();
+                return Ok(profissionais);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar recuperar Profissionais. Erro: {erro.Message}");
+            }
         }
 
-        // POST: api/Profissional
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("{id}")]
+        public async Task<IActionResult> PegarProfissionalPeloId(Guid id)
+        {
+             try
+            {
+                var profissional = await _profissionalModel.PegarProfissionalPeloId(id, true);
+                if(profissional == null) return NotFound("Nenhum Profissional foi encontrado pelo Id");
+
+                return Ok(profissional);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar recuperar Profissional. Erro: {erro.Message}");
+            }
+        }
+
+        [HttpGet("{nome}/nome")]
+        public async Task<IActionResult> PegarTodosProfissionaisPeloNome(string nome)
+        {
+             try
+            {
+                var profissional = await _profissionalModel.PegarTodosProfissionaisPeloNome(nome, true);
+                if(profissional == null) return NotFound("Nenhum Profissionais foi encontrados pelo Nome");
+
+                return Ok(profissional);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar recuperar Profissionais. Erro: {erro.Message}");
+            }
+        }
+
         [HttpPost]
-        public async Task<ActionResult<Profissional>> PostProfissional(Profissional profissional)
+        public async Task<IActionResult> AdicionarProfissional(Profissional model)
         {
-            _context.Profissionais.Add(profissional);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProfissional", new { id = profissional.Id }, profissional);
-        }
-
-        // DELETE: api/Profissional/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProfissional(Guid id)
-        {
-            var profissional = await _context.Profissionais.FindAsync(id);
-            if (profissional == null)
+           try
             {
-                return NotFound();
+                var profissional = await _profissionalModel.AdicionarProfissional(model);
+                if(profissional == null) return BadRequest("Erro ao tentar adicionar um Profissional");
+
+                return Ok(profissional);
             }
-
-            _context.Profissionais.Remove(profissional);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar Adicionar Profissional. Erro: {erro.Message}");
+            }
         }
 
-        private bool ProfissionalExists(Guid id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarProfissional(Guid id, Profissional model)
         {
-            return _context.Profissionais.Any(e => e.Id == id);
+           try
+            {
+                var profissional = await _profissionalModel.AtualizarProfissional(id, model);
+                if(profissional == null) return BadRequest("Erro ao tentar atualizar um Profissional");
+
+                return Ok(profissional);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar Atualizar Profissional. Erro: {erro.Message}");
+            }
+        }
+
+
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> ApagarProfissional(Guid id)
+        {
+            try
+            {
+                return await _profissionalModel.ApagarProfissional(id) ?
+                    Ok("Deletado!") :
+                    BadRequest("Profissional não Deletado");
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                $"Erro ao tentar Apagar Profissional. Erro: {erro.Message}");
+            }
         }
     }
 }
