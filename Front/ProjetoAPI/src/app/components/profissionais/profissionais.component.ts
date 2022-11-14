@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { Profissional } from 'src/app/models/Profissional';
 import { ProfissionalService } from 'src/app/services/profissional.service';
 
 @Component({
@@ -7,13 +10,13 @@ import { ProfissionalService } from 'src/app/services/profissional.service';
   styleUrls: ['./profissionais.component.scss']
 })
 export class ProfissionaisComponent implements OnInit {
-
-  public profissionais: any = [];
-  public profissionaisFiltrados: any = [];
-  larguraImg: number = 80;
-  margemImg: number = 2;
-  bordasImg: number = 50;
-  exibirImg: boolean = true;
+  modalRef?: BsModalRef;
+  public profissionais: Profissional[] = [];
+  public profissionaisFiltrados: Profissional[] = [];
+  public larguraImg: number = 80;
+  public margemImg: number = 2;
+  public bordasImg: number = 50;
+  public exibirImg: boolean = true;
   private _filtroLista: string = '';
 
   public get filtroLista(){
@@ -25,31 +28,48 @@ export class ProfissionaisComponent implements OnInit {
     this.profissionaisFiltrados = this.filtroLista ? this.filtrarProfissionais(this.filtroLista) : this.profissionais;
   }
 
-  filtrarProfissionais(filtrarPor : string) : any {
+  public filtrarProfissionais(filtrarPor: string): Profissional[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.profissionais.filter(
       (profissional : any) => profissional.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     )
   }
 
-  constructor(private profissionalService: ProfissionalService) { }
+  constructor(
+    private profissionalService: ProfissionalService,
+    private modalService: BsModalService,
+    private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getProfissionais();
   }
 
-  alterarImg(){
+  public alterarImg(): void{
     this.exibirImg = !this.exibirImg;
   }
 
 
   public getProfissionais(): void {
     this.profissionalService.pegarProfissionais().subscribe(
-      response => {
-        this.profissionais = response;
+      (_profissional: Profissional[]) => {
+        this.profissionais = _profissional;
         this.profissionaisFiltrados = this.profissionais;
       },
       error => console.log(error)
     );
+  }
+
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+    this.toastr.success('Profissional excluido com sucesso!', 'Excluido!');
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
   }
 }
