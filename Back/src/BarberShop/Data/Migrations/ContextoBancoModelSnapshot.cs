@@ -28,23 +28,20 @@ namespace BarberShop.Data.Migrations
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("char(36)");
 
-                    b.Property<int?>("ClinteId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ClinteId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("ProfissionalId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProfissionalId1")
+                    b.Property<Guid?>("ProfissionalId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("ProfissionalId1");
+                    b.HasIndex("ProfissionalId");
 
                     b.ToTable("Agendas");
                 });
@@ -134,10 +131,7 @@ namespace BarberShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ProfissionalId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProfissionalId1")
+                    b.Property<Guid>("ProfissionalId")
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Valor")
@@ -145,7 +139,7 @@ namespace BarberShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfissionalId1");
+                    b.HasIndex("ProfissionalId");
 
                     b.ToTable("Servicos");
                 });
@@ -173,16 +167,14 @@ namespace BarberShop.Data.Migrations
             modelBuilder.Entity("BarberShop.Models.Agenda", b =>
                 {
                     b.HasOne("BarberShop.Models.Cliente", "Cliente")
-                        .WithMany("Agenda")
+                        .WithMany("Agendas")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BarberShop.Models.Profissional", "Profissional")
                         .WithMany("Agendas")
-                        .HasForeignKey("ProfissionalId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfissionalId");
 
                     b.Navigation("Cliente");
 
@@ -212,7 +204,7 @@ namespace BarberShop.Data.Migrations
                 {
                     b.HasOne("BarberShop.Models.Profissional", "Profissional")
                         .WithMany("Servicos")
-                        .HasForeignKey("ProfissionalId1")
+                        .HasForeignKey("ProfissionalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -246,7 +238,7 @@ namespace BarberShop.Data.Migrations
 
             modelBuilder.Entity("BarberShop.Models.Cliente", b =>
                 {
-                    b.Navigation("Agenda");
+                    b.Navigation("Agendas");
 
                     b.Navigation("ClientesProfissionais");
                 });

@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using BarberShop.Data;
+using BarberShop.Models;
+using BarberShop.Models.Contratos;
+using BarberShop.Data.Contratos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +14,16 @@ var conexao = builder.Services.AddDbContext<ContextoBanco>(option => option.UseM
 );
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
+builder.Services.AddScoped<IProfissionalModel, ProfissionalModel>();
+builder.Services.AddScoped<IGeralPersistencia, GeralPersistencia>();
+builder.Services.AddScoped<IProfissionalPersistencia, ProfissionalPersistencia>();
+
+
 builder.Services.AddCors();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

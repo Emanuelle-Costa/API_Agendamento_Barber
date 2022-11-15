@@ -26,7 +26,7 @@ namespace BarberShop.Data
                                    
             }
             
-            consulta = consulta.OrderBy(c => c.Nome);
+            consulta = consulta.AsNoTracking().OrderBy(c => c.Nome);
 
             return await consulta.ToArrayAsync();
         }
@@ -43,7 +43,7 @@ namespace BarberShop.Data
                                    
             }
             
-            consulta = consulta.OrderBy(c => c.Nome)
+            consulta = consulta.AsNoTracking().OrderBy(c => c.Nome)
                                 .Where(c => c.Nome.ToLower().Contains(nome.ToLower()));
 
             return await consulta.ToArrayAsync();
@@ -61,7 +61,7 @@ namespace BarberShop.Data
                                    
             }
             
-            consulta = consulta.OrderBy(c => c.Id)
+            consulta = consulta.AsNoTracking().OrderBy(c => c.Id)
                                .Where(c => c.Id == clienteId);
 
             return await consulta.FirstOrDefaultAsync();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BarberShop.Data.Migrations
 {
-    public partial class inicial : Migration
+    public partial class teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,9 +60,8 @@ namespace BarberShop.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Data = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    ProfissionalId = table.Column<int>(type: "int", nullable: true),
-                    ProfissionalId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    ClinteId = table.Column<int>(type: "int", nullable: true),
+                    ProfissionalId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    ClinteId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     ClienteId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
@@ -75,11 +74,10 @@ namespace BarberShop.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Agendas_Profissionais_ProfissionalId1",
-                        column: x => x.ProfissionalId1,
+                        name: "FK_Agendas_Profissionais_ProfissionalId",
+                        column: x => x.ProfissionalId,
                         principalTable: "Profissionais",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -87,23 +85,21 @@ namespace BarberShop.Data.Migrations
                 name: "ClientesProfissionais",
                 columns: table => new
                 {
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    ProfissionalId = table.Column<int>(type: "int", nullable: false),
-                    ClienteId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    ProfissionalId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    ClienteId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ProfissionalId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ClientesProfissionais", x => new { x.ProfissionalId, x.ClienteId });
                     table.ForeignKey(
-                        name: "FK_ClientesProfissionais_Clientes_ClienteId1",
-                        column: x => x.ClienteId1,
+                        name: "FK_ClientesProfissionais_Clientes_ClienteId",
+                        column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClientesProfissionais_Profissionais_ProfissionalId1",
-                        column: x => x.ProfissionalId1,
+                        name: "FK_ClientesProfissionais_Profissionais_ProfissionalId",
+                        column: x => x.ProfissionalId,
                         principalTable: "Profissionais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -121,15 +117,14 @@ namespace BarberShop.Data.Migrations
                     Valor = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     InicioServiço = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     FimServiço = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    ProfissionalId = table.Column<int>(type: "int", nullable: false),
-                    ProfissionalId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    ProfissionalId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Servicos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Servicos_Profissionais_ProfissionalId1",
-                        column: x => x.ProfissionalId1,
+                        name: "FK_Servicos_Profissionais_ProfissionalId",
+                        column: x => x.ProfissionalId,
                         principalTable: "Profissionais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -141,9 +136,8 @@ namespace BarberShop.Data.Migrations
                 columns: table => new
                 {
                     ServicoId = table.Column<int>(type: "int", nullable: false),
-                    ProfissionalId = table.Column<int>(type: "int", nullable: false),
-                    ServicoId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    ProfissionalId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    ProfissionalId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ServicoId1 = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
@@ -155,8 +149,8 @@ namespace BarberShop.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ServicosProfissionais_Profissionais_ProfissionalId1",
-                        column: x => x.ProfissionalId1,
+                        name: "FK_ServicosProfissionais_Profissionais_ProfissionalId",
+                        column: x => x.ProfissionalId,
                         principalTable: "Profissionais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -175,29 +169,19 @@ namespace BarberShop.Data.Migrations
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agendas_ProfissionalId1",
+                name: "IX_Agendas_ProfissionalId",
                 table: "Agendas",
-                column: "ProfissionalId1");
+                column: "ProfissionalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientesProfissionais_ClienteId1",
+                name: "IX_ClientesProfissionais_ClienteId",
                 table: "ClientesProfissionais",
-                column: "ClienteId1");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClientesProfissionais_ProfissionalId1",
-                table: "ClientesProfissionais",
-                column: "ProfissionalId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Servicos_ProfissionalId1",
+                name: "IX_Servicos_ProfissionalId",
                 table: "Servicos",
-                column: "ProfissionalId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ServicosProfissionais_ProfissionalId1",
-                table: "ServicosProfissionais",
-                column: "ProfissionalId1");
+                column: "ProfissionalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServicosProfissionais_ServicoId",
