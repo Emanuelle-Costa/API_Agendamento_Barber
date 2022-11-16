@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace BarberShop.Data.Contratos
 {
     public interface IGeralPersistencia

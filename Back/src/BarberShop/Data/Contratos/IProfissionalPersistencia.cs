@@ -1,6 +1,3 @@
-
-using System;
-using System.Threading.Tasks;
 using BarberShop.Models;
 
 namespace BarberShop.Data.Contratos
