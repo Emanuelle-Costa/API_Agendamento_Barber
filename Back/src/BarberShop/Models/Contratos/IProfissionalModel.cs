@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using BarberShop.Models;
-
 namespace BarberShop.Models.Contratos
 {
     public interface IProfissionalModel

@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import { DetalheProfissionalComponent } from './components/profissionais/detalhe-profissional/detalhe-profissional.component';
+import { ListaProfissionalComponent } from './components/profissionais/lista-profissional/lista-profissional.component';
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { ServicosComponent } from './components/servicos/servicos.component';
@@ -24,6 +26,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfissionalService } from './services/profissional.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { LoginComponent } from './components/usuario/login/login.component';
+import { CadastroComponent } from './components/usuario/cadastro/cadastro.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 
 
 
@@ -37,7 +43,13 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     ServicosComponent,
     AgendaComponent,
     TituloComponent,
-    ContatosComponent
+    ContatosComponent,
+    DetalheProfissionalComponent,
+    ListaProfissionalComponent,
+    UsuarioComponent,
+    LoginComponent,
+    CadastroComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
