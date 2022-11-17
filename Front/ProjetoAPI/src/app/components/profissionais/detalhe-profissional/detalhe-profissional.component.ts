@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Profissional } from 'src/app/models/Profissional';
 import { ProfissionalService } from 'src/app/services/profissional.service';
@@ -17,8 +17,8 @@ export class DetalheProfissionalComponent implements OnInit {
   profissional = {} as Profissional;
   form =  {} as FormGroup;
 
-  get formulario(): any {
-    return this.form.controls
+  get f(): any {
+    return this.form.controls;
   }
 
   constructor(private fb: FormBuilder,
@@ -33,18 +33,20 @@ export class DetalheProfissionalComponent implements OnInit {
   }
 
   public validacao(): void{
+
     this.form = this.fb.group({
 
-      nome:['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      imagemURL: ['', Validators.required],
+      instagram: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]],
+      telefone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
 
-      imagemURL:['', Validators.required],
-
-      instagram:['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-
-      telefone:['', Validators.required],
-
-      email:['', [Validators.required, Validators.email]]
     });
+  }
+
+  public resetForm(): void{
+    this.form.reset();
   }
 
   public pegarProfissional(): void {

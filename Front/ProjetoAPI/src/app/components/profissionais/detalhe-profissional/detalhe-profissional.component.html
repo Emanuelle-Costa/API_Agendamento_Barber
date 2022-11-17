@@ -1,39 +1,80 @@
 <div class ="card rounded shadow-sm">
+
   <form [formGroup]="form">
     <div class="p-3">
       <div class="form-row">
         <div class="form-group col-md-12">
           <label>Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Nome">
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}"
+          formControlName="nome" placeholder="Insira o Nome">
+          <div *ngIf="f.nome.errors?.required" class="invalid-feedback">
+            Nome é obrigatório!
+          </div>
+          <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">
+            Nome deve ter no mínimo 3 caracteres!
+          </div>
+          <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">
+            Nome deve ter no máximo 50 caracteres!
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-8">
           <label>Imagem URL</label>
-          <input type="text" class="form-control" placeholder="Insira a url da imagem">
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.imagemURL.errors && f.imagemURL.touched}"
+          formControlName="imagemURL" placeholder="Insira a url da imagem">
+          <div class="invalid-feedback">
+            Imagem URL é obrigatório!
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Instagram</label>
-          <input type="text" class="form-control" placeholder="Insira o @ do profissional">
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.instagram.errors && f.instagram.touched}"
+          formControlName="instagram" placeholder="Insira o @ do profissional">
+          <div *ngIf="f.instagram.errors?.required" class="invalid-feedback">
+            Instagram é obrigatório!
+          </div>
+          <div *ngIf="f.instagram.errors?.minlength" class="invalid-feedback">
+            Deve ter no mínimo 3 caracteres!
+          </div>
+          <div *ngIf="f.instagram.errors?.maxlength" class="invalid-feedback">
+            Deve ter no máximo 25 caracteres!
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label>Telefone</label>
-          <input type="text" class="form-control" placeholder="(00) 90000-0000">
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.telefone.errors && f.telefone.touched}"
+          formControlName="telefone" placeholder="(00) 90000-0000">
+          <div class="invalid-feedback">
+            Telefone é obrigatório!
+          </div>
         </div>
         <div class="form-group col-md-8">
           <label>e-mail</label>
-          <input type="text" class="form-control" placeholder="user@gmail.com">
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}"
+          formControlName="email" placeholder="user@gmail.com">
+          <div *ngIf="f.email.errors?.required" class="invalid-feedback">
+            e-mail é obrigatório!
+          </div>
+          <div *ngIf="f.email.errors?.email" class="invalid-feedback">
+            Formato inválido!
+          </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border" routerLink="/profissionais/lista">
+        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
           Cancelar Alteração
         </button>
-        <button class="btn btn-success" (click)=" addProfissional()">
+        <button class="btn btn-success" [disabled]="!form.valid" (click)=" addProfissional()">
           <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
           Salvar Evento
         </button>

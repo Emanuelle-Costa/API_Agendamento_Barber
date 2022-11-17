@@ -70,8 +70,7 @@ export class ListaProfissionalComponent implements OnInit {
   }
 
 
-  openModal(event: any, template: TemplateRef<any>, profissionalId: number): void {
-    event.stopPropagation();
+  openModal(template: TemplateRef<any>, profissionalId: number): void {
     this.profissionalId = profissionalId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
