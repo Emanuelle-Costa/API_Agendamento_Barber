@@ -13,7 +13,7 @@ export class ProfissionalService {
     return this.http.get<Profissional[]>(this.baseURL)
   }
 
-  public pegaProfissionalPeloId(id: string): Observable<Profissional>{
+  public pegaProfissionalPeloId(id: number): Observable<Profissional>{
     return this.http.get<Profissional>(`${this.baseURL}/${id}`);
   }
 
@@ -21,7 +21,7 @@ export class ProfissionalService {
     return this.http.post<Profissional>(this.baseURL, profissional);
   }
 
-  public AtualizarProfissional(id: string, profissional: Profissional): Observable<Profissional>{
+  public AtualizarProfissional(id: number, profissional: Profissional): Observable<Profissional>{
     return this.http.put<Profissional>(`${this.baseURL}/${id}`, profissional);
   }
 

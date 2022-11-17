@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Profissional } from 'src/app/models/Profissional';
 import { ProfissionalService } from 'src/app/services/profissional.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-detalhe-profissional',
@@ -23,11 +24,12 @@ export class DetalheProfissionalComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: ActivatedRoute,
               private profissionalService: ProfissionalService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.validacao();
-    this.carregarProfissional();
+    this.pegarProfissional();
   }
 
   public validacao(): void{
@@ -45,33 +47,37 @@ export class DetalheProfissionalComponent implements OnInit {
     });
   }
 
-  public carregarProfissional(): void {
+  public pegarProfissional(): void {
     const profissionalIdParam = this.router.snapshot.paramMap.get('id');
 
     if (profissionalIdParam !== null){
-      this.profissionalService.pegaProfissionalPeloId(profissionalIdParam).subscribe(
+      this.spinner.show();
+      this.profissionalService.pegaProfissionalPeloId(+profissionalIdParam).subscribe(
         (profissional: Profissional) => {
           this.profissional = {...profissional};
           this.form.patchValue(this.profissional)
         },
         (error: any) => {
           console.error(error);
+          this.spinner.hide();
         },
-        () => {}
+        () => this.spinner.hide(),
       );
 
     }
   }
 
-  public salvarAlteracao(): void{
+  public addProfissional(): void{
+    this.spinner.show();
     this.profissional = {...this.form.value};
     this.profissionalService.AdicionarProfissional(this.profissional).subscribe(
       () => this.toastr.success('Profissional adicionado com sucesso!', 'Sucesso'),
       (error: any) => {
         console.error(error);
+        this.spinner.hide();
         this.toastr.error('Erro ao tentar adicionar Profissional!', 'Erro');
       },
-      () => {}
+      () => this.spinner.hide(),
     )
   }
 

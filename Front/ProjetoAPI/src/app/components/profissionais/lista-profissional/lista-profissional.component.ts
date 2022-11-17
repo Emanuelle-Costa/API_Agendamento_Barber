@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Profissional } from 'src/app/models/Profissional';
 import { ProfissionalService } from 'src/app/services/profissional.service';
@@ -41,24 +42,30 @@ export class ListaProfissionalComponent implements OnInit {
     private profissionalService: ProfissionalService,
     private modalService: BsModalService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private router: Router) { }
 
   public ngOnInit(): void {
-    this.getProfissionais();
-  }
+    this.spinner.show();
+    this.pegarProfissionais();
+    }
 
   public alterarImg(): void{
     this.exibirImg = !this.exibirImg;
   }
 
 
-  public getProfissionais(): void {
+  public pegarProfissionais(): void {
     this.profissionalService.pegarProfissionais().subscribe(
       (_profissional: Profissional[]) => {
         this.profissionais = _profissional;
         this.profissionaisFiltrados = this.profissionais;
       },
-      error => console.log(error)
+      (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao carregar os Profissionais', 'Erro!');
+      },
+      () => this.spinner.hide()
     );
   }
 
@@ -71,18 +78,22 @@ export class ListaProfissionalComponent implements OnInit {
 
   confirm(): void {
     this.modalRef.hide();
+    this.spinner.show();
 
     this.profissionalService.ExcluirProfissional(this.profissionalId).subscribe(
       (resultado: any) => {
         if(resultado.mensagem === 'Deletado!'){
           this.toastr.success('Profissional excluido com sucesso!', 'Excluido!');
-          this.getProfissionais();
+          this.spinner.hide();
+          this.pegarProfissionais();
         }
       },
       (error: any) => {
-        this.toastr.error(`Erro ao tentar deletar o evento ${this.profissionalId}`, 'Erro');
         console.error(error);
-      }
+        this.toastr.error(`Erro ao tentar deletar o evento de código ${this.profissionalId}`, 'Erro');
+        this.spinner.hide();
+      },
+      () => this.spinner.hide(),
     )
 
   }
