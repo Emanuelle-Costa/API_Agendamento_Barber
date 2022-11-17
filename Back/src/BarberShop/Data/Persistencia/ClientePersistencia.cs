@@ -49,7 +49,7 @@ namespace BarberShop.Data
             return await consulta.ToArrayAsync();
         }
 
-        public async Task<Cliente> PegarClientePeloId(Guid clienteId, bool incluirProfissionais)
+        public async Task<Cliente> PegarClientePeloId(int clienteId, bool incluirProfissionais)
         {
             IQueryable<Cliente> consulta = _context.Clientes
                 .Include(c => c.Agendas);

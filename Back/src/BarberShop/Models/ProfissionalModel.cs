@@ -37,7 +37,7 @@ namespace BarberShop.Models
             }
         }
 
-        public async Task<Profissional> AtualizarProfissional(Guid profissionalId, Profissional model)
+        public async Task<Profissional> AtualizarProfissional(int profissionalId, Profissional model)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace BarberShop.Models
             }
         }
 
-        public async Task<bool> ApagarProfissional(Guid profissionalId)
+        public async Task<bool> ApagarProfissional(int profissionalId)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace BarberShop.Models
            }
         }
 
-        public async Task<Profissional> PegarProfissionalPeloId(Guid profissionalId, bool incluirClientes = false, bool incluirServicos = false)
+        public async Task<Profissional> PegarProfissionalPeloId(int profissionalId, bool incluirClientes = false, bool incluirServicos = false)
         {
            try
            {

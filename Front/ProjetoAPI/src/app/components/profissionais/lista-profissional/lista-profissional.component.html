@@ -49,11 +49,11 @@
       <td>{{ profissional.nome }}</td>
       <td class="d-none d-md-table-cell">{{ profissional.instagram }}</td>
       <td>{{ profissional.telefone }}</td>
-      <button type="button" class="btn btn-success btn-sm mr-2 mt-2" (click)="editarProfissional(profissional.id)">
+       <button type="button" class="btn btn-success btn-sm mr-2 mt-2" (click)="editarProfissional(profissional.id)">
         <i class="fa fa-edit"></i>
         Editar
       </button>
-      <button type="button" class="btn btn-danger btn-sm mt-2" (click)="openModal(template)">
+      <button type="button" class="btn btn-danger btn-sm mt-2" (click)="openModal($event, template, profissional.id)">
         <i class="fa fa-trash"></i>
         Excluir
       </button>
@@ -74,7 +74,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Tem certeza que quer excluir este Profissional?</p>
+    <p>Tem certeza que quer excluir o Profissional de código {{this.profissionalId}} ?</p>
     <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
   </div>

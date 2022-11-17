@@ -6,6 +6,6 @@ namespace BarberShop.Data.Contratos
     {
         Task<Cliente[]> PegarTodosClientesPeloNome(string nome, bool incluirProfissionais);
         Task<Cliente[]> PegarTodosClientes(bool incluirProfissionais);
-        Task<Cliente> PegarClientePeloId(Guid clienteId, bool incluirProfissionais);
+        Task<Cliente> PegarClientePeloId(int clienteId, bool incluirProfissionais);
     }
 }

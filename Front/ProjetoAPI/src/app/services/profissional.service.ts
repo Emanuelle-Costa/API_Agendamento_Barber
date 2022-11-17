@@ -25,7 +25,7 @@ export class ProfissionalService {
     return this.http.put<Profissional>(`${this.baseURL}/${id}`, profissional);
   }
 
-  public ExcluirProfissional(id: string){
+  public ExcluirProfissional(id: number): Observable<any>{
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 

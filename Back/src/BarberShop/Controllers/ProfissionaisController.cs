@@ -37,7 +37,7 @@ namespace BarberShop.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> PegarProfissionalPeloId(Guid id)
+        public async Task<IActionResult> PegarProfissionalPeloId(int id)
         {
              try
             {
@@ -88,7 +88,7 @@ namespace BarberShop.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult>AtualizarProfissional(Guid id, Profissional model)
+        public async Task<IActionResult>AtualizarProfissional(int id, Profissional model)
         {
            try
             {
@@ -107,13 +107,13 @@ namespace BarberShop.Controllers
 
         
         [HttpDelete("{id}")]
-        public async Task<IActionResult> ApagarProfissional(Guid id)
+        public async Task<IActionResult> ApagarProfissional(int id)
         {
             try
             {
-                return await _profissionalModel.ApagarProfissional(id) ?
-                    Ok("Deletado!") :
-                    BadRequest("Profissional não Deletado");
+                return await _profissionalModel.ApagarProfissional(id) 
+                    ? Ok(new { mensagem ="Deletado!" }) 
+                    : BadRequest("Profissional não Deletado");
             }
             catch (Exception erro)
             {

@@ -9,9 +9,9 @@ namespace BarberShop.Models
     {
         public int ServicoId { get; set; }
 
-        public Cliente Servico { get; set; }
+        public Servico Servico { get; set; }
 
-        public Guid ProfissionalId { get; set; }
+        public int ProfissionalId { get; set; }
 
         public Profissional Profissional { get; set; }
     }

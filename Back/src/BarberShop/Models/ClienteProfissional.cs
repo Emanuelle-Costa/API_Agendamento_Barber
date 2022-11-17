@@ -7,11 +7,11 @@ namespace BarberShop.Models
 {
     public class ClienteProfissional
     {
-         public Guid ClienteId { get; set; }
+         public int ClienteId { get; set; }
 
         public Cliente Cliente { get; set; }
 
-        public Guid ProfissionalId { get; set; }
+        public int ProfissionalId { get; set; }
 
         public Profissional Profissional { get; set; }
     }

@@ -1,43 +1,39 @@
-<div class="card rounded shadow-sm">
-  <form>
+<div class ="card rounded shadow-sm">
+  <form [formGroup]="form">
     <div class="p-3">
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label>ID</label>
-          <input type="text" class="form-control" formControlName="id" placeholder="Insira um UUID">
-        </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
           <label>Nome</label>
-          <input type="text" class="form-control" formControlName="nome" placeholder="Insira o nome do profissional">
+          <input type="text" class="form-control" placeholder="Insira o Nome">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-8">
           <label>Imagem URL</label>
-          <input type="text" class="form-control" formControlName="imagem" placeholder="Insira a url da imagem">
+          <input type="text" class="form-control" placeholder="Insira a url da imagem">
         </div>
         <div class="form-group col-md-4">
           <label>Instagram</label>
-          <input type="text" class="form-control" formControlName="instagram" placeholder="Insira o @ do profissional">
+          <input type="text" class="form-control" placeholder="Insira o @ do profissional">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label>Telefone</label>
-          <input type="text" class="form-control" formControlName="telefone" placeholder="(00) 90000-0000">
+          <input type="text" class="form-control" placeholder="(00) 90000-0000">
         </div>
         <div class="form-group col-md-8">
           <label>e-mail</label>
-          <input type="text" class="form-control" formControlName="email" placeholder="e-mail">
+          <input type="text" class="form-control" placeholder="user@gmail.com">
         </div>
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border">
+        <button class="btn btn-outline-secondary mr-auto border" routerLink="/profissionais/lista">
           Cancelar Alteração
         </button>
-        <button class="btn btn-success">
+        <button class="btn btn-success" (click)="salvarAlteracao()">
           <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
           Salvar Evento
         </button>

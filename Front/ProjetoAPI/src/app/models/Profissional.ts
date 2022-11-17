@@ -3,7 +3,7 @@ import { Cliente } from "./Cliente";
 import { Servico } from "./Servico";
 
 export interface Profissional {
-  id: string;
+  id: number;
   imagemURL: string;
   nome: string;
   telefone: string;

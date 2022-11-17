@@ -11,9 +11,10 @@ import { ProfissionalService } from 'src/app/services/profissional.service';
   styleUrls: ['./lista-profissional.component.scss']
 })
 export class ListaProfissionalComponent implements OnInit {
-  modalRef!: BsModalRef;
+  modalRef = {} as BsModalRef;
   public profissionais: Profissional[] = [];
   public profissionaisFiltrados: Profissional[] = [];
+  public profissionalId = 0;
   public larguraImg: number = 80;
   public margemImg: number = 2;
   public bordasImg: number = 50;
@@ -62,21 +63,36 @@ export class ListaProfissionalComponent implements OnInit {
   }
 
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(event: any, template: TemplateRef<any>, profissionalId: number): void {
+    event.stopPropagation();
+    this.profissionalId = profissionalId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirm(): void {
-    this.modalRef?.hide();
-    this.toastr.success('Profissional excluido com sucesso!', 'Excluido!');
+    this.modalRef.hide();
+
+    this.profissionalService.ExcluirProfissional(this.profissionalId).subscribe(
+      (resultado: any) => {
+        if(resultado.mensagem === 'Deletado!'){
+          this.toastr.success('Profissional excluido com sucesso!', 'Excluido!');
+          this.getProfissionais();
+        }
+      },
+      (error: any) => {
+        this.toastr.error(`Erro ao tentar deletar o evento ${this.profissionalId}`, 'Erro');
+        console.error(error);
+      }
+    )
+
   }
 
   decline(): void {
     this.modalRef?.hide();
   }
 
-
-  editarProfissional(id: string): void{
+  editarProfissional(id: number): void{
     this.router.navigate([`profissionais/detalhe/${id}`]);
   }
+
 }
