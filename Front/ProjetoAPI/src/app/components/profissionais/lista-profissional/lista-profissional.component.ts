@@ -79,7 +79,7 @@ export class ListaProfissionalComponent implements OnInit {
     this.modalRef.hide();
     this.spinner.show();
 
-    this.profissionalService.ExcluirProfissional(this.profissionalId).subscribe(
+    this.profissionalService.excluirProfissional(this.profissionalId).subscribe(
       (resultado: any) => {
         if(resultado.mensagem === 'Deletado!'){
           this.toastr.success('Profissional excluido com sucesso!', 'Excluido!');

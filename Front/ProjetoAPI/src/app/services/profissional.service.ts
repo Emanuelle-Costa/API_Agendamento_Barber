@@ -13,19 +13,19 @@ export class ProfissionalService {
     return this.http.get<Profissional[]>(this.baseURL)
   }
 
-  public pegaProfissionalPeloId(id: number): Observable<Profissional>{
+  public pegarProfissionalPeloId(id: number): Observable<Profissional>{
     return this.http.get<Profissional>(`${this.baseURL}/${id}`);
   }
 
-  public AdicionarProfissional(profissional: Profissional): Observable<Profissional>{
+  public adicionar(profissional: Profissional): Observable<Profissional>{
     return this.http.post<Profissional>(this.baseURL, profissional);
   }
 
-  public AtualizarProfissional(id: number, profissional: Profissional): Observable<Profissional>{
-    return this.http.put<Profissional>(`${this.baseURL}/${id}`, profissional);
+  public atualizar(profissional: Profissional): Observable<Profissional>{
+    return this.http.put<Profissional>(`${this.baseURL}/${profissional.id}`, profissional);
   }
 
-  public ExcluirProfissional(id: number): Observable<any>{
+  public excluirProfissional(id: number): Observable<any>{
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
