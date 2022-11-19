@@ -21,10 +21,10 @@
 
 <h2>O que você vai precisar para rodar o projeto na sua máquina?</h2>
 <p>1- Ao Baixar o projeto abra-o no Visual Studio Code importe as seguintes ferramentas na versão 6.0.10:</p>
-<p>Microsoft.entityframeworkcore;</p>
-<p>Microsoft.entityframeworkcore.Desing;</p>
-<p>Microsoft.entityframeworkcore.Tools;</p>
-<p>Microsoft.AspNetCore.Mvc.NewtonsoftJson;</p>
+<p>-Microsoft.entityframeworkcore;</p>
+<p>-Microsoft.entityframeworkcore.Desing;</p>
+<p>-Microsoft.entityframeworkcore.Tools;</p>
+<p>-Microsoft.AspNetCore.Mvc.NewtonsoftJson;</p>
 <br>
 
 <p>2- Abra um terminal na pasta que você clonou o projeto e caminhe até a pasta BarberShop  (cd Back\src\BarberShop);</p>
