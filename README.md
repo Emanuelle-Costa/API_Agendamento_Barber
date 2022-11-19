@@ -1,5 +1,9 @@
 <h1 align="center"> Barber Shop </h1>
 
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p> 
+
 <h2>Sobre o Projeto:</h2>
 <p>O projeto tem a proposta de ser uma Web API para agendamento de serviços de Barbearia.</p>
 <br>
@@ -86,8 +90,4 @@
 
 ![Excluir](https://i.imgur.com/7P1G0I7.png)
 <br>
-<hr>
 
-<p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
-</p>
