@@ -52,18 +52,6 @@
 <br>
 <hr>
 
-<p>Ao Passar o mouse na foto é possível visualizar o Id do profissional:</p>
-
-![Id](https://i.imgur.com/NFqlImC.png)
-<br>
-<hr>
-
-<p>Filtrar (buscar) profissional pelo nome:</p>
-
-![Filtro](https://i.imgur.com/4OGgQ0s.png)
-<br>
-<hr>
-
 <p>Ao clicar em editar abre uma página com os campos preenchidos com as informações atuais do Profissional:</p>
 
 ![Editar](https://i.imgur.com/fGI9gie.png)
@@ -72,10 +60,23 @@
 <br>
 <hr>
 
+
+<p>Ao Passar o mouse na foto é possível visualizar o Id do profissional:</p>
+
+![Id](https://i.imgur.com/NFqlImC.png)
+<br>
+<hr>
+
 <p>Ao clicar em +Novo abre uma página com os campos a serem preenchidos:</p>
 
 ![Adicionar](https://i.imgur.com/k1O9K8Q.png)
 
+<br>
+<hr>
+
+<p>Filtrar (buscar) profissional pelo nome:</p>
+
+![Filtro](https://i.imgur.com/4OGgQ0s.png)
 <br>
 <hr>
 
