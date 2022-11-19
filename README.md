@@ -20,22 +20,22 @@
 <hr>
 
 <h2>O que você vai precisar para rodar o projeto na sua máquina?</h2>
-<p>1- Ao Baixar o projeto abra-o no Visual Studio Code importe as seguintes ferramentas na versão 6.0.10:</p>
+<p><b>1-</b> Ao Baixar o projeto abra-o no Visual Studio Code importe as seguintes ferramentas na versão 6.0.10:</p>
 <p>-Microsoft.entityframeworkcore;</p>
 <p>-Microsoft.entityframeworkcore.Desing;</p>
 <p>-Microsoft.entityframeworkcore.Tools;</p>
 <p>-Microsoft.AspNetCore.Mvc.NewtonsoftJson;</p>
 <br>
 
-<p>2- Abra um terminal na pasta que você clonou o projeto e caminhe até a pasta BarberShop  (cd Back\src\BarberShop);</p>
+<p><b>2-</b> Abra um terminal na pasta que você clonou o projeto e caminhe até a pasta BarberShop  (cd Back\src\BarberShop);</p>
 <br>
-<p>3- Execute o comando dotnet run;</p>
+<p><b>3-</b> Execute o comando dotnet run;</p>
 <br>
-<p>4- Abra um novo terminal na pasta que você clonou o projeto e caminhe até ProjetoAPI (cd Front\ProjetoAPI);</p>
+<p><b>4-</b> Abra um novo terminal na pasta que você clonou o projeto e caminhe até ProjetoAPI (cd Front\ProjetoAPI);</p>
 <br>
-<p>5- Execute o comando npm install e em seguida o comando ng serve;</p>
+<p><b>5-</b> Execute o comando npm install e em seguida o comando ng serve;</p>
 <br>
-<p>6- Abra em seu navegador o link http gerado pelo comando ng serve (http://localhost:4200)</p>
+<p><b>6-</b> Abra em seu navegador o link http gerado pelo comando ng serve (http://localhost:4200)</p>
 <br>
 <h3>Prontinho! O projeto já deve rodar em sua máquina.</h3>
 <br>
