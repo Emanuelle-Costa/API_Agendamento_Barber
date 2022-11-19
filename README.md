@@ -54,7 +54,7 @@
 <br>
 <hr>
 
-<p>Filtrando (buscando) profissional pelo nome:</p>
+<p>Filtrar (buscar) profissional pelo nome:</p>
 
 ![Filtro](https://i.imgur.com/4OGgQ0s.png)
 <br>
