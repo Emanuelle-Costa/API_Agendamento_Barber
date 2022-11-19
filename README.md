@@ -43,25 +43,51 @@
 <h2>Telas Funcionais da aplicação:</h2>
 <br>
 <p>Listagem dos Profissionais Cadastrados:</p>
+
 ![Listagem dos Profissionais Cadastrados](https://i.imgur.com/99fQytW.png)
 <br>
+<hr>
+
 <p>Ao Passar o mouse na foto é possível visualizar o Id do profissional:</p>
+
 ![Id](https://i.imgur.com/NFqlImC.png)
 <br>
+<hr>
+
 <p>Filtrando (buscando) profissional pelo nome:</p>
+
 ![Filtro](https://i.imgur.com/4OGgQ0s.png)
 <br>
+<hr>
+
 <p>Ao clicar em editar abre uma página com os campos preenchidos com as informações atuais do Profissional:</p>
+
 ![Editar](https://i.imgur.com/fGI9gie.png)
-<p>Basta atualizar a informação desejada, clicar em Salvar e em seguida Listar Profissionais</p>
+
+<p>Basta atualizar a informação desejada, clicar em Salvar e em seguida Listar Profissionais.</p>
 <br>
+<hr>
+
 <p>Ao clicar em +Novo abre uma página com os campos a serem preenchidos:</p>
-[Adicionar](https://i.imgur.com/k1O9K8Q.png)
+
+![Adicionar](https://i.imgur.com/k1O9K8Q.png)
+
 <br>
-<p>Ao clicar em Exclir a seguinte mensagem é mostrada:</p>
+<hr>
+
+<p>Ao clicar em Excluir a seguinte mensagem é mostrada:</p>
+
 ![Excluir](https://i.imgur.com/c3jU3aD.png)
+
 <br>
+<hr>
+
 <p>Clicando em Sim para confirmar a exclusão é apresentado um tooltip com mensagem de sucesso:</p>
+
 ![Excluir](https://i.imgur.com/7P1G0I7.png)
 <br>
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+<hr>
+
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
